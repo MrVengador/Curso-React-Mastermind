@@ -1,28 +1,16 @@
 import React, { useState } from 'react';
 
-function Celda({ id, value, onGameOver, addScore }) {
-    const [view, setView] = useState(false);
+function Celda({ id, value, addScore, onGameOver }) {
 
-    function handleClick() {
-        if (!view) { // Solo ejecuta la lógica si no ha sido clickeada antes
-            setView(true); // Revela la celda
-            if (value === "💣") {
-                addScore(-1); // Incrementar el puntaje
-                alert("GAME OVER");
 
-                // onGameOver(); // Llamar a la función para manejar el fin del juego
-            } else {
-                addScore(value); // Incrementar el puntaje
-                console.log("Valor es " + value);
-            }
-        }
+    const handleClick = () => {
+        addScore(id); // Suma el valor
     };
 
-
     return (
-        <div>
+        <div style={{ width: 50, height: 50 }}>
             <button className="cell" id={id} onClick={handleClick}>
-                {view ? value : " "} {/* Muestra el valor solo si view es true */}
+                {value}  {/* Si 'ver' es true, muestra el valor, si es false, muestra " " */}
             </button>
         </div>
     );

@@ -1,27 +1,38 @@
 import React, { useState, useEffect } from 'react';
 
-const Timer = ({ MaxTime }) => {
-    const [seconds, setSeconds] = useState(MaxTime);
+const Timer = ({ MaxTime, Restart }) => {
+
+    const [seconds, setSeconds] = useState(MaxTime); //Actualizo la variable seconds
 
     useEffect(() => {
-        if (seconds <= 0)
-            return; // Si el tiempo es 0, no iniciar otro intervalo
+        if (Restart == true) {
+            setSeconds(MaxTime);
+        }
+    }, [Restart, MaxTime]); // Este useEffect se ejecuta cuando Restart o MaxTime cambian
 
-        const intervalId = setInterval(() => {
-            setSeconds(prevSeconds => {
-                if (prevSeconds <= 1) {
-                    clearInterval(intervalId); // Detiene el intervalo cuando llega a 0
-                    return 0;
-                }
-                return prevSeconds - 1;
-            });
-        }, 1000);
 
-        return () => clearInterval(intervalId); // Limpieza cuando el componente se desmonta o se actualiza
-    }, [seconds]); // Se ejecuta cuando `seconds` cambia
+    useEffect(() => {
+        if (seconds <= 0) return; // Evita que el temporizador siga contando después de 0
 
+        //Inicia el temporizador Orden 1
+        const idTemporizador = setInterval(
+            // seconds => seconds - 1 == setTimeLeft(function(prevTime) { return prevTime - 1;}
+            () => { setSeconds(prevSeconds => prevSeconds - 1) } //Accion/ función 
+            , 1000 //    cada tiempo en ms se hara la acción
+        )
+
+        //Desmonta el temporizador Orden 3
+        return () => {
+            clearInterval(idTemporizador);
+        }
+    }, [seconds]);
+
+
+
+
+    //Orden 2
     return (
-        <div>
+        <div className='lcdText text-danger borderInsideS'>
             {seconds + " seg"}
         </div>
     );
