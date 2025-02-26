@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Timer = ({ MaxTime, Restart }) => {
+const Timer = ({ MaxTime, Restart, StopGame }) => {
 
     const [seconds, setSeconds] = useState(MaxTime); //Actualizo la variable seconds
 
@@ -12,7 +12,10 @@ const Timer = ({ MaxTime, Restart }) => {
 
 
     useEffect(() => {
-        if (seconds <= 0) return; // Evita que el temporizador siga contando después de 0
+        if (seconds <= 0) {
+            StopGame();
+            return; // Evita que el temporizador siga contando después de 0
+        }
 
         //Inicia el temporizador Orden 1
         const idTemporizador = setInterval(
@@ -32,7 +35,7 @@ const Timer = ({ MaxTime, Restart }) => {
 
     //Orden 2
     return (
-        <div className='lcdText text-danger borderInsideS'>
+        <div className='text-danger borderInsideS'>
             {seconds + " seg"}
         </div>
     );

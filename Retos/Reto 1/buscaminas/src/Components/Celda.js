@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
-function Celda({ id, value, addScore, onGameOver }) {
+function Celda({ id, value, viewValue }) {
 
 
     const handleClick = () => {
-        addScore(id); // Suma el valor
+        viewValue(id); // Suma el valor
     };
 
     return (

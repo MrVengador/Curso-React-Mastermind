@@ -21,14 +21,14 @@
 {
   /* background-color: #282c34; */
   background-image: url("https://wallpaperaccess.com/full/5694159.jpg");
-  background-size: cover;
+  background-size: contain;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: start;
   font-size: calc(10px + 2vmin);
   color: white;
-  height: 1000px;
+  min-height: 1000px;
 }
 
 .App-link
@@ -49,17 +49,46 @@
   }
 }
 
+/* Paleta de colores */
+/* https://www.color-hex.com/color-palette/1012536 */
+
+/* https://colormagic.app/es/palette/6734cfcadd671510623ca750 */
+
 #navbar
 {
-  background-color: #af724a;
+  background-color: #0b4553;
+  color: white;
 }
+
+
+#container_Game
+{
+  display: grid;
+  grid-template-columns: repeat(2, 2fr);
+  column-gap: 50px;
+  justify-content: center;
+}
+
+@media (max-width: 1200px)
+{
+  #container_Game
+  {
+    grid-template-columns: 1fr;
+  }
+}
+
+.backgroundBlack
+{
+  background-color: #453a36;
+}
+
 
 #board
 {
   display: grid;
   justify-content: center;
   gap: 3px;
-  background-color: #c7c7c7;
+  background-color: #a3a9ae;
 
 }
 
@@ -67,8 +96,25 @@
 {
   width: 50px;
   height: 50px;
-  background-color: rgb(180, 102, 0);
+  background-color: #ff6d1f;
   border: black 1px solid;
   color: rgb(208, 255, 0);
   font-weight: 400;
+}
+
+.cell.pulsado
+{
+  background-color: #ffa047;
+}
+
+
+#Top_Scores
+{
+  background-color: #ffebb8;
+
+}
+
+.ScoreItem
+{
+  background-color: #ffa047;
 }
