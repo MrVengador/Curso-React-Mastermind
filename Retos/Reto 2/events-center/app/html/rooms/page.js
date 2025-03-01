@@ -1,8 +1,5 @@
-"use client";  // Esta línea debe estar en la parte superior de tu archivo
 
-import { useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Importa JS de Bootstrap aquí
 
 export default function rooms() {
     return (
